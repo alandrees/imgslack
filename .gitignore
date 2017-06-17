@@ -1,0 +1,28 @@
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+*.pyc
+*.pyo
+env
+env*
+dist
+build
+*.egg
+*.egg-info
+_mailinglist
+.tox
+.cache/
+.idea/
+
+# Coverage reports
+htmlcov
+.coverage
+.coverage.*
+*,cover
