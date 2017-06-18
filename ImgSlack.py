@@ -4,8 +4,6 @@ from flask import request
 from flask import jsonify
 import greenstalk
 
-import SlackImageEventController
-
 app = Flask(__name__)
 
 app_token = 'oeZ8mFbswzdGBnLpEbcvxT4v'
@@ -20,6 +18,8 @@ def status():
 @app.route('/image', methods=['POST'])
 def image_event():
     if app_token == request.json['token']:
-        SlackImageEventController.add_to_queue(request.json['event']['file']['id'])
+            stalk = greenstalk.Client()
+            jobid = stalk.put(image_id)
+            stalk.close()
 
     return jsonify([])
