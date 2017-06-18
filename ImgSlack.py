@@ -52,7 +52,7 @@ def image_event(team):
     @returns Json Response containing the keypair {'jerb' : jobid}
     """
     if app_token == request.json['token']:
-        if request.json['type'] == 'url_verification'
+        if request.json['type'] == 'url_verification':
             return jsonify({'challenge' : request.json['challenge']})
         else:
             image_id = request.json['event']['file']['id']
