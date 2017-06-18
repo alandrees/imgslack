@@ -1,0 +1,23 @@
+beanstalk:
+  host: '127.0.0.1' #beanstalk hostname
+  port: 11300 #beanstalk port
+
+workers:
+  external_url: 'http://localhost' #where to access the images
+  api_url: 'https://slack.com/api' #slack API 
+  file_target: '/var/www/html/public' #where to store the images
+  notify_user: 'ircimageservice' #what user to send the link as
+  
+teams:
+  team1: #teamname (team parameter in ImgSlack.image_event function)
+    oauth_token: 'oauth-token' #app oauth token
+    bot_token: 'oauth-token2' #bot oauth token
+    app_token: 'app-token' #application authorization token
+  team2:
+    oauth_token: 'oauth-token'
+    bot_token: 'oauth-token2'
+    app_token: 'app-token'
+  team3:
+    oauth_token: 'oauth-token'
+    bot_token: 'oauth-token2'
+    app_token: 'app-token'
