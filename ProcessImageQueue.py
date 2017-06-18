@@ -102,3 +102,26 @@ def make_api_call(method, data):
     req = requests.post(api_url + method, data)
 
     return req
+
+def download_image(img):
+    filename = uuid.uuid4().hex + '.' + img['filetype']
+    url = img['url_private_download']
+    file_path = file_target + '/' + img['team'][0]
+
+    if not os.path.isdir(file_path):
+        os.mkdir(file_path)
+
+    local_filename = file_path + '/' + filename
+
+    # NOTE the stream=True parameter
+    r = requests.get(url,
+                     stream=True,
+                     headers={'Authorization' : 'Bearer ' + oauth_token})
+
+    with open(local_filename, 'wb') as f:
+        for chunk in r.iter_content(chunk_size=1024):
+            if chunk: # filter out keep-alive new chunks
+                f.write(chunk)
+
+    return local_filename
+
