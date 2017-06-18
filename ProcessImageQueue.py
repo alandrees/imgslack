@@ -128,3 +128,5 @@ def download_image(img):
 def push_to_database(metadata):
     pass
 
+def generate_link(path):
+    return external_url + '/' + path.replace(file_target, '')
