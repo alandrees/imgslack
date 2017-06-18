@@ -20,5 +20,6 @@ def status():
 @app.route('/image', methods=['POST'])
 def image_event():
     if app_token == request.json['token']:
-        SlackImageEventController.get_data(request.json['event']['file'])
+        SlackImageEventController.add_to_queue(request.json['event']['file']['id'])
+
     return jsonify([])
