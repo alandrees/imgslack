@@ -51,11 +51,13 @@ def image_event(team):
 
     @returns Json Response containing the keypair {'jerb' : jobid}
     """
-    image_id = request.json['event']['file']['id']
-
     if app_token == request.json['token']:
+        if request.json['type'] == 'url_verification'
+            return jsonify({'challenge' : request.json['challenge']})
+        else:
+            image_id = request.json['event']['file']['id']
             stalk = greenstalk.Client()
             jobid = stalk.put(image_id)
             stalk.close()
 
-    return jsonify([])
+            return ''
