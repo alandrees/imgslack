@@ -145,3 +145,6 @@ def notify_channel(channel, link):
     message_result = json.loads(api_result.text)
 
     return message_result['ok']
+
+if __name__ == '__main__':
+    process_image_queue()
