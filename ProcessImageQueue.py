@@ -130,3 +130,18 @@ def push_to_database(metadata):
 
 def generate_link(path):
     return external_url + '/' + path.replace(file_target, '')
+
+def notify_channel(channel, link):
+    channel = '#' + channel
+
+    data = {'channel'  : channel,
+            'text'     : link,
+            'token'    : bot_token,
+            'username' : notify_user}
+
+
+    api_result = make_api_call('chat.postMessage', data)
+
+    message_result = json.loads(api_result.text)
+
+    return message_result['ok']
