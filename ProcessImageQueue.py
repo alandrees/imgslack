@@ -39,6 +39,9 @@ def process_image_queue():
 def get_data(fileid):
     img = get_image_data(fileid)
 
+    if not img['mimetype'].startswith('image/'):
+        return False
+
     channels = []
     
     for channel in img['channels']:
