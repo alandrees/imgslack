@@ -13,6 +13,10 @@ file_target = '/var/www/slack.pirate-hour.net/public'
 external_url = 'http://slack.pirate-hour.net.webdev'
 notify_user = 'ircimageservice'
 
+def pp(data):
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(data)
+
 exit_loop = False
 
 def process_image_queue():
