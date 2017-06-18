@@ -17,6 +17,17 @@ app = Flask(__name__)
 
 app_token = 'oeZ8mFbswzdGBnLpEbcvxT4v'
 
+
+def parse_config():
+    """
+    Parse the configuration yaml file
+
+    @param None
+
+    @returns None
+    """
+
+
 @app.route('/status/', methods=['GET'])
 def status():
     """
