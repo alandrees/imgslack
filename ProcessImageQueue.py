@@ -9,6 +9,10 @@ oauth_token = \
   'xoxp-126494226213-125700289296-199373791090-7f75eb64ea4de22a88b8641a60c03c73'
 bot_token = 'xoxb-198714945568-DAtYfMJ2YPkJp2hT8yr5Fa8p'
 api_url = 'https://slack.com/api/'
+file_target = '/var/www/slack.pirate-hour.net/public'
+external_url = 'http://slack.pirate-hour.net.webdev'
+notify_user = 'ircimageservice'
+
 
 def get_data(fileid):
     img = get_image_data(fileid)
