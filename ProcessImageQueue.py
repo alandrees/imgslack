@@ -35,6 +35,7 @@ def process_image_queue():
         stalk.delete(jid)
 
     stalk.close()
+    exit
 
 def get_data(fileid):
     img = get_image_data(fileid)
