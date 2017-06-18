@@ -95,8 +95,9 @@ def get_team(teamid):
 
 
 def make_api_call(method, data):
-    data = data.copy()
-    data.update({'token': oauth_token})
+    if 'token' not in data:
+        data = data.copy()
+        data.update({'token': oauth_token})
 
     req = requests.post(api_url + method, data)
 
