@@ -51,11 +51,13 @@ def get_data(fileid):
 
     img['channels'] = channels
 
-    img['user'] = get_user_data(img['user'])['user']['name']
-        
-    pp = pprint.PrettyPrinter(indent=4)
-    pp.pprint(img)
+    user_data = get_user_data(img['user'])['user']
 
+    img['user'] = (user_data['id'], user_data['name'])
+    team_data = get_team(user_data['team_id'])['team']
+    img['team'] = (user_data['team_id'], team_data['domain'], team_data['name'])
+
+    return img
 
 def get_image_data(fileid):
     data = {'file' : fileid}
