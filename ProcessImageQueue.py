@@ -43,9 +43,9 @@ def get_data(fileid):
         return False
 
     channels = []
-    
+
     for channel in img['channels']:
-        channel_info = get_channel_data(channel)  
+        channel_info = get_channel_data(channel)
         channel_info = (channel, channel_info['channel']['name'])
         channels.append(channel_info)
 
