@@ -82,9 +82,6 @@ def get_user_data(user):
     api_result = make_api_call('users.info', data)
 
     return json.loads(api_result.text)
-        
-def download_img(img):
-    pass
 
 def get_team(teamid):
     data = {}
