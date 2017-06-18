@@ -13,6 +13,26 @@ file_target = '/var/www/slack.pirate-hour.net/public'
 external_url = 'http://slack.pirate-hour.net.webdev'
 notify_user = 'ircimageservice'
 
+def process_image_queue():
+    stalk = greenstalk.Client()
+
+    while not exit_loop:
+        jid, body = stalk.reserve()
+
+        metadata = get_data(body)
+
+        if metadata is not False:
+            image = download_image(metadata)
+            metadata['local_path'] = image
+            push_to_database(metadata)
+
+            for channel in metadata['channels']:
+                notify_channel(channel[1],
+                                   generate_link(image))
+
+        stalk.delete(jid)
+
+    stalk.close()
 
 def get_data(fileid):
     img = get_image_data(fileid)
