@@ -69,7 +69,7 @@ def get_image_data(fileid):
 def get_channel_data(channel):
 
     data = {'channel' : channel}
-        
+
     api_result = make_api_call('channels.info', data)
 
     return json.loads(api_result.text)
