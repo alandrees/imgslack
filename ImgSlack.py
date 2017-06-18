@@ -56,8 +56,9 @@ def image_event(team):
             return jsonify({'challenge' : request.json['challenge']})
         else:
             image_id = request.json['event']['file']['id']
+
             stalk = greenstalk.Client()
-            jobid = stalk.put(image_id)
+            jobid = stalk.put(json.dumps((image_id,team)))
             stalk.close()
 
             return ''

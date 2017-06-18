@@ -25,7 +25,11 @@ def process_image_queue():
     while not exit_loop:
         jid, body = stalk.reserve()
 
-        metadata = get_data(body)
+        body = tuple(json.loads(body))
+
+        config = body[1]
+
+        metadata = get_data(body[0])
 
         if metadata is not False:
             image = download_image(metadata)
