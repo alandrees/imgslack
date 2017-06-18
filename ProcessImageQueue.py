@@ -13,6 +13,8 @@ file_target = '/var/www/slack.pirate-hour.net/public'
 external_url = 'http://slack.pirate-hour.net.webdev'
 notify_user = 'ircimageservice'
 
+exit_loop = False
+
 def process_image_queue():
     stalk = greenstalk.Client()
 
