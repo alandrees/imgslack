@@ -16,13 +16,6 @@ def status():
     stats = stalk.stats()
     return jsonify(stats)
 
-@app.route('/', methods=['GET'])
-def root():
-    return "I think i'm getting the fear..."
-
-@app.route('/image/<id>', methods=['GET'])
-def team(id):
-    return "The image id you're looking for is: " + id
 
 @app.route('/image', methods=['POST'])
 def image_event():
