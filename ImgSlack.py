@@ -26,7 +26,7 @@ def parse_config():
 
     @returns None
     """
-
+    pass
 
 @app.route('/status/', methods=['GET'])
 def status():
