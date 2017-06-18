@@ -86,6 +86,14 @@ def get_user_data(user):
 def download_img(img):
     pass
 
+def get_team(teamid):
+    data = {}
+
+    api_result = make_api_call('team.info', data)
+
+    return json.loads(api_result.text)
+
+
 def make_api_call(method, data):
     data = data.copy()
     data.update({'token': oauth_token})
