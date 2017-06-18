@@ -1,8 +1,10 @@
 import yaml
-import SlackImageEventController
 from flask import Flask
 from flask import request
 from flask import jsonify
+import greenstalk
+
+import SlackImageEventController
 
 app = Flask(__name__)
 
