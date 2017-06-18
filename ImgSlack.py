@@ -10,6 +10,11 @@ app = Flask(__name__)
 
 app_token = 'oeZ8mFbswzdGBnLpEbcvxT4v'
 
+@app.route('/status/', methods=['GET'])
+def status():
+    stalk = greenstalk.Client(host='127.0.0.1', port=11300)
+    stats = stalk.stats()
+    return jsonify(stats)
 
 @app.route('/', methods=['GET'])
 def root():
