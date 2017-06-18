@@ -125,3 +125,6 @@ def download_image(img):
 
     return local_filename
 
+def push_to_database(metadata):
+    pass
+
