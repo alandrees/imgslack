@@ -21,7 +21,7 @@ app_token = 'oeZ8mFbswzdGBnLpEbcvxT4v'
 
 app_config =  ImgSlackConfig.load_config()
 
-@app.route('/status/', methods=['GET'])
+@app.route('/status', methods=['GET'])
 def status():
     """
     Route Function for handling the queue status page
