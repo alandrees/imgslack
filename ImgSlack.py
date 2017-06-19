@@ -30,7 +30,11 @@ def status():
 
     @returns Json Response containing the greenstalk stats
     """
-    stalk = greenstalk.Client()
+
+    host = app_config['beanstalk']['host']
+    port = app_config['beanstalk']['port']
+
+    stalk = greenstalk.Client(host, port)
     stats = stalk.stats()
     return jsonify(stats)
 
