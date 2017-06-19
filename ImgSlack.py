@@ -64,7 +64,7 @@ def image_event(team):
         else:
             image_id = request.json['event']['file']['id']
 
-            stalk = greenstalk.Client()
+            stalk = greenstalk.Client(host, port)
             jobid = stalk.put(json.dumps((image_id,team)))
             stalk.close()
 
