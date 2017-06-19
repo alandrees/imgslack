@@ -49,6 +49,7 @@ def process_image_queue():
                 notify_channel(channel[1],
                                    generate_link(image))
 
+        print(body[0] + " complete")
         stalk.delete(jid)
 
     stalk.close()
