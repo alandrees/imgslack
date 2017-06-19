@@ -13,13 +13,13 @@ from flask import jsonify
 import greenstalk
 import json
 
+import ImgSlackConfig
+
 app = Flask(__name__)
 
 app_token = 'oeZ8mFbswzdGBnLpEbcvxT4v'
 
-def parse_config():
-    """
-    Parse the configuration yaml file
+app_config =  ImgSlackConfig.load_config()
 
     @param None
 
