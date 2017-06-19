@@ -17,9 +17,19 @@ def pp(data):
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(data)
 
-exit_loop = False
-
 def process_image_queue():
+    """
+    Queue worker entrypoint
+
+    @param None
+
+    @returns None
+    """
+
+    global team_config
+
+    host = app_config['beanstalk']['host']
+    port= app_config['beanstalk']['port']
     stalk = greenstalk.Client()
 
     while not exit_loop:
