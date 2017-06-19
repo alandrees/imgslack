@@ -69,3 +69,5 @@ def image_event(team):
             stalk.close()
 
             return ''
+    else:
+        return ''
