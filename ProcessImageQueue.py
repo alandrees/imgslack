@@ -44,7 +44,6 @@ def process_image_queue():
         if metadata is not False:
             image = download_image(metadata)
             metadata['local_path'] = image
-            push_to_database(metadata)
 
             for channel in metadata['channels']:
                 notify_channel(channel[1],
