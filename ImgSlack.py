@@ -7,7 +7,6 @@ Purpose: Flask-enabled http endpoints for recieving events from slack
 and adding the image to queue job
 """
 
-import yaml
 from flask import Flask
 from flask import request
 from flask import jsonify
