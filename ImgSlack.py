@@ -54,7 +54,7 @@ def image_event(team):
     port = app_config['beanstalk']['port']
 
     if not team in app_config['teams'].keys():
-        return 'Team Not Supported'
+        return abort(404)
     else:
         app_token = app_config['teams'][team]['app_token']
 
