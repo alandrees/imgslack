@@ -46,7 +46,7 @@ def image_event(team):
 
     @param team (string) team to which this image belongs
 
-    @returns Json Response containing the keypair {'jerb' : jobid}
+    @returns json response if it's a url_verification type, blank otherwise
     """
     if app_token == request.json['token']:
         if request.json['type'] == 'url_verification':
