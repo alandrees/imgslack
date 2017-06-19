@@ -10,6 +10,7 @@ and adding the image to queue job
 from flask import Flask
 from flask import request
 from flask import jsonify
+from flask import abort
 import greenstalk
 import json
 
