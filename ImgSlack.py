@@ -48,6 +48,9 @@ def image_event(team):
 
     @returns json response if it's a url_verification type, blank otherwise
     """
+
+    host = app_config['beanstalk']['host']
+    port = app_config['beanstalk']['port']
     if app_token == request.json['token']:
         if request.json['type'] == 'url_verification':
             return jsonify({'challenge' : request.json['challenge']})
