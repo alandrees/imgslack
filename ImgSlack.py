@@ -21,12 +21,6 @@ app_token = 'oeZ8mFbswzdGBnLpEbcvxT4v'
 
 app_config =  ImgSlackConfig.load_config()
 
-    @param None
-
-    @returns None
-    """
-    pass
-
 @app.route('/status/', methods=['GET'])
 def status():
     """
