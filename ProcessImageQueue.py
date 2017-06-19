@@ -156,10 +156,11 @@ def notify_channel(channel, link):
 
     notify_user = app_config['workers']['notify_user']
 
-    data = {'channel'  : channel,
-            'text'     : link,
-            'token'    : team_config['bot_token'],
-            'username' : notify_user}
+    data = {'channel'      : channel,
+            'text'         : link,
+            'token'        : team_config['bot_token'],
+            'username'     : notify_user,
+            'unfurl_media' : 'false'}
 
 
     api_result = make_api_call('chat.postMessage', data)
