@@ -51,6 +51,12 @@ def image_event(team):
 
     host = app_config['beanstalk']['host']
     port = app_config['beanstalk']['port']
+
+    if not team in app_config['teams'].keys():
+        return 'Team Not Supported'
+    else:
+        app_token = app_config['teams'][team]['app_token']
+
     if app_token == request.json['token']:
         if request.json['type'] == 'url_verification':
             return jsonify({'challenge' : request.json['challenge']})
