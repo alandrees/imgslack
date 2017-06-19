@@ -37,7 +37,7 @@ def process_image_queue():
 
         body = tuple(json.loads(body))
 
-        config = body[1]
+        team_config = app_config['teams'][body[1]]
 
         metadata = get_data(body[0])
 
