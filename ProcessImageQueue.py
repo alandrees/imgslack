@@ -113,16 +113,17 @@ def get_team(teamid):
 def make_api_call(method, data):
     if 'token' not in data:
         data = data.copy()
-        data.update({'token': oauth_token})
 
-    req = requests.post(api_url + method, data)
+        data.update({'token': team_config['oauth_token']})
+
+    req = requests.post(app_config['workers']['api_url'] + method, data)
 
     return req
 
 def download_image(img):
     filename = uuid.uuid4().hex + '.' + img['filetype']
     url = img['url_private_download']
-    file_path = file_target + '/' + img['team'][0]
+    file_path = app_config['workers']['file_target'] + '/' + img['team'][0]
 
     if not os.path.isdir(file_path):
         os.mkdir(file_path)
@@ -130,9 +131,14 @@ def download_image(img):
     local_filename = file_path + '/' + filename
 
     # NOTE the stream=True parameter
+
+    authorization_field = 'Bearer ' + team_config['oauth_token']
+
+    request_header = {'Authorization' : authorization_field}
+
     r = requests.get(url,
                      stream=True,
-                     headers={'Authorization' : 'Bearer ' + oauth_token})
+                     headers=request_header)
 
     with open(local_filename, 'wb') as f:
         for chunk in r.iter_content(chunk_size=1024):
@@ -141,18 +147,18 @@ def download_image(img):
 
     return local_filename
 
-def push_to_database(metadata):
-    pass
-
 def generate_link(path):
-    return external_url + path.replace(file_target, '')
+    return app_config['workers']['external_url'] + \
+      path.replace(app_config['workers']['file_target'], '')
 
 def notify_channel(channel, link):
     channel = '#' + channel
 
+    notify_user = app_config['workers']['notify_user']
+
     data = {'channel'  : channel,
             'text'     : link,
-            'token'    : bot_token,
+            'token'    : team_config['bot_token'],
             'username' : notify_user}
 
 
