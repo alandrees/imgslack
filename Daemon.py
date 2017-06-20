@@ -1,3 +1,10 @@
+"""
+Copyright 2017 Pirate Hour Productions
+
+Author: Alan Drees
+
+Purpose: Implement a daemon wrapper around the ProcessImageQueue module
+"""
 import daemonize
 
 import ProcessImageQueue
