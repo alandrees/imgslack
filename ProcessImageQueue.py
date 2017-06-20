@@ -46,6 +46,8 @@ def process_image_queue():
     port= app_config['beanstalk']['port']
     stalk = greenstalk.Client()
 
+    print("ImgSlack Processor Has Started")
+
     while not exit_loop:
         jid, body = stalk.reserve()
 
