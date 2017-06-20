@@ -1,3 +1,11 @@
+"""
+Copyright 2017 Pirate Hour Records
+
+Author: Alan Drees
+
+Purpose: Implement the queue worker process for ImgSlack
+"""
+
 import requests
 import json
 import pprint
@@ -14,6 +22,13 @@ team_config = {}
 exit_loop = False
 
 def pp(data):
+    """
+    Wrapper around pretty print to print stuff to stdout
+
+    @param data (mixed) any data structure to be printed nicely
+
+    @returns None
+    """
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(data)
 
@@ -25,7 +40,6 @@ def process_image_queue():
 
     @returns None
     """
-
     global team_config
 
     host = app_config['beanstalk']['host']
@@ -56,6 +70,13 @@ def process_image_queue():
     exit
 
 def get_data(fileid):
+    """
+    Builds an image metadata object
+
+    @param fileid (string) fileid to get the metadata for
+
+    @returns (dict) Metadata fields aggregated together
+    """
     img = get_image_data(fileid)
 
     if not img['mimetype'].startswith('image/'):
@@ -79,6 +100,13 @@ def get_data(fileid):
     return img
 
 def get_image_data(fileid):
+    """
+    Make a call to the slack API method files.info
+
+    @param fileid (string) slack file id to lookup
+
+    @returns (dict) dictionary of file metadata
+    """
     data = {'file' : fileid}
 
     api_result  = make_api_call('files.info', data)
@@ -86,16 +114,27 @@ def get_image_data(fileid):
     return json.loads(api_result.text)['file']
 
 def get_channel_data(channel):
+    """
+    Make a call to the slack API method channels.info
 
+    @param channel (string) slack channel id to lookup
+
+    @returns (dict) dictionary of channel metadata
+    """
     data = {'channel' : channel}
 
     api_result = make_api_call('channels.info', data)
 
     return json.loads(api_result.text)
 
-
 def get_user_data(user):
+    """
+    Make a call to the slack API method users.info
 
+    @param user (string) slack user id to lookup
+
+    @returns (dict) dictionary of user metadata
+    """
     data = {'user' : user}
 
     api_result = make_api_call('users.info', data)
@@ -103,6 +142,13 @@ def get_user_data(user):
     return json.loads(api_result.text)
 
 def get_team(teamid):
+    """
+    Make a call to the slack API method team.info
+
+    @param teamid (string) slack team id to lookup
+
+    @returns (dict) dictionary of team metadata
+    """
     data = {}
 
     api_result = make_api_call('team.info', data)
@@ -111,6 +157,14 @@ def get_team(teamid):
 
 
 def make_api_call(method, data):
+    """
+    Lower level function to make a call to the slack api
+
+    @param method (string) Slack API method to call
+    @param data (dict) fields to be passed to the slack API
+
+    @returns (Request Response) the API's response
+    """
     if 'token' not in data:
         data = data.copy()
 
@@ -121,6 +175,13 @@ def make_api_call(method, data):
     return req
 
 def download_image(img):
+    """
+    Download the image to the location specified in the config file
+
+    @param img (dict) dictionary containing the image's metadata
+
+    @returns (string) contains the local filename generated for the file
+    """
     filename = uuid.uuid4().hex + '.' + img['filetype']
     url = img['url_private_download']
     file_path = app_config['workers']['file_target'] + '/' + img['team'][0]
@@ -148,10 +209,26 @@ def download_image(img):
     return local_filename
 
 def generate_link(path):
+    """
+    Build the external link to the file
+
+    @param path (string) absolute path to the file (including 'file_target')
+
+    @returns (string) usable external URL to the image file
+    """
     return app_config['workers']['external_url'] + \
       path.replace(app_config['workers']['file_target'], '')
 
 def notify_channel(channel, link):
+    """
+    Send a message to the channel where the image was originally shared
+
+    @param channel (string) channel to which the link was originally shared
+    @param link (string) link to post to the channel
+
+    @returns (boolean)
+    """
+
     channel = '#' + channel
 
     notify_user = app_config['workers']['notify_user']
