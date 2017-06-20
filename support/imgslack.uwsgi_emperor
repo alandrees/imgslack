@@ -1,0 +1,12 @@
+[uwsgi]
+plugin = python3
+socket = /tmp/imgslack.sock
+chmod-socket = 775
+chdir = <application root>
+master = true
+virtualenv = <virtualenv directory>
+module = ImgSlack:app
+uid = www-data
+gid = www-data
+processes = 1
+threads = 1
