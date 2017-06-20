@@ -6,6 +6,7 @@ Author: Alan Drees
 Purpose: Implement a daemon wrapper around the ProcessImageQueue module
 """
 import daemonize
+import argparse
 
 import ProcessImageQueue
 
