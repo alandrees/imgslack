@@ -1,0 +1,15 @@
+[Unit]
+Description=ImgSlack Worker
+After=beanstalkd.service
+
+[Service]
+Type=simple
+User=www
+WorkingDirectory=<path_to_config>
+ExecStart=<path_to_source>/.env/bin/python3 -u <path_to_source>/ProcessImageQueue.py
+Restart=on-abort
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
